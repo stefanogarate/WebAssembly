@@ -1,0 +1,12 @@
+version: "2"
+services:
+  wasm:
+    container_name: wasm
+    build: .
+    volumes:
+      - ./src/:/project
+    ports:
+     - "88:80"
+    command: '/bin/bash --login'
+    tty: true
+    working_dir: /project

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Funciones</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <script src="../loader.js"></script>
+</head>
+
+<body>
+  <h1>Compile C to WebAssembly</h1>
+  <p>The test result can be found in console also.</p>
+  <pre id="consola">
+
+  </pre>
+
+  <script>
+    loadWebAssembly('cuadrado.wasm')
+      .then(instance => {
+        const cuadrado = instance.exports._valorCuadrado
+        let aux1 = cuadrado(2);
+        let aux2 = cuadrado(3);
+        let aux3 = cuadrado(2 + 5);
+
+        console.log('2^2 =', aux1);
+        console.log('3^2 =', aux2);
+        console.log('(2 + 5)^2 =', aux3);
+
+        document.getElementById('consola').innerHTML = `2^2 = ${aux1} \n3^2 = ${aux2} \n(2 + 5)^2 = ${aux3}`;
+      });
+  </script>
+</body>
+</html>
